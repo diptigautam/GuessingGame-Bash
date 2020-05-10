@@ -11,13 +11,18 @@ function guess {
 	read user_input
 	while [[ $user_input -ne $files ]]
 	do
-		if [[ $user_input -gt $files ]]
+		if [[ $user_input =~ ^[0-9]+ ]]
 		then
-			echo "Too big guess, try again!"
+			if [[ $user_input -gt $files ]]
+			then
+				echo "Too big guess, try again!"
+			else
+				echo "Too small guess, try again!"
+			fi
 		else
-			echo "Too small guess, try again!"
+			echo "Invalid Input, try again!"
 		fi
-		read user_input
+			read user_input
 	done
 	echo "Perfect, congratulations!"
 }
