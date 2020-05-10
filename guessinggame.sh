@@ -11,7 +11,7 @@ function guess {
 	read user_input
 	while [[ $user_input -ne $files ]]
 	do
-		if [[ $user_input =~ ^[0-9]+ ]]
+		if [[ $user_input =~ [0-9] ]]
 		then
 			if [[ $user_input -gt $files ]]
 			then
