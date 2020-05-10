@@ -3,7 +3,7 @@
 
 echo "How many files are in the current directory?"
 
-files=$(ls -1 | wc -l)
+files=$(ls -1A | wc -l)
 #Uncomment the following to debug/check
 # echo $files
 
