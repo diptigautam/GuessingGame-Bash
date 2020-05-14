@@ -9,20 +9,20 @@ files=$(ls -1Ap | grep -v / | wc -l)
 
 function guess {
 	read user_input
+	while [[ $user_input =~ [^0-9] ]]
+	do
+		echo "Invalid input, try again!"
+		read user_input
+	done
 	while [[ $user_input -ne $files ]]
 	do
-		if [[ $user_input =~ [[:digit:]] ]]
+		if [[ $user_input -gt $files ]]
 		then
-			if [[ $user_input -gt $files ]]
-			then
-				echo "Too big guess, try again!"
-			else
-				echo "Too small guess, try again!"
-			fi
+			echo "Too big guess, try again!"
 		else
-			echo "Invalid input, try again!"
+			echo "Too small guess, try again!"
 		fi
-		read user_input
+	read user_input
 	done
 	echo "Perfect, congratulations!"
 }
