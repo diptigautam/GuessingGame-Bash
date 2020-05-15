@@ -3,17 +3,21 @@
 
 echo "How many files are in the current directory?"
 
+read user_input
+
 files=$(ls -1Ap | grep -v / | wc -l)
 #Uncomment the following to debug/check
 # echo $files
 
-function guess {
-	read user_input
+function invalid {
 	while [[ $user_input =~ [^0-9] ]]
 	do
 		echo "Invalid input, try again!"
 		read user_input
 	done
+}
+
+function guess {
 	while [[ $user_input -ne $files ]]
 	do
 		if [[ $user_input -gt $files ]]
@@ -22,9 +26,15 @@ function guess {
 		else
 			echo "Too small guess, try again!"
 		fi
-	read user_input
+		read user_input
+		invalid
 	done
 	echo "Perfect, congratulations!"
 }
 
-guess
+function main {
+	invalid
+	guess
+}
+
+main
