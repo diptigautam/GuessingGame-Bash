@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 # File: guessinggame.sh
 
-echo "How many files are in the current directory?"
-
-read user_input
-
-files=$(ls -1Ap | grep -v / | wc -l)
-#Uncomment the following to debug/check
-# echo $files
-
 function invalid {
 	while [[ $user_input =~ [^0-9] ]]
 	do
@@ -32,9 +24,17 @@ function guess {
 	echo "Perfect, congratulations!"
 }
 
-function main {
+function guessing_game {
+	echo "How many files are in the current directory?"
+
+	read user_input
+
+	files=$(ls -1Ap | grep -v / | wc -l)
+	#Uncomment the following to debug/check
+	# echo $files
+
 	invalid
 	guess
 }
 
-main
+guessing_game
